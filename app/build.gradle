@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdk
+    defaultConfig {
+        applicationId "sample.com.cleanmvp"
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVer"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVer"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVer"
+
+    implementation libs.junit
+    implementation libs.runner
+    implementation libs.espresso
+
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVer"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVer"
+
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVer"
+    implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVer"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVer"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVer"
+
+    implementation libs.rxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVer"
+}
